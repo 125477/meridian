@@ -1,0 +1,18 @@
+{
+  "id": "docs-portal",
+  "name": "Docs Portal",
+  "version": "0.1.0",
+  "kitVersion": "^0.1.0",
+  "description": "产品/技术文档站，带侧栏与多篇 Markdown。",
+  "tags": ["docs"],
+  "layers": ["apps"],
+  "defaultApps": ["docs"],
+  "optionalApps": [],
+  "defaults": { "withDocs": true },
+  "prompts": [],
+  "features": { "docs": { "apps": ["docs"] } },
+  "templateDir": "template",
+  "pathRules": [],
+  "renameRules": [],
+  "license": "MIT"
+}

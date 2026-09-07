@@ -1,0 +1,30 @@
+import { StrictMode, type ReactNode } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App";
+import "@{{projectName}}/ui/styles.css";
+{{#if withI18n}}
+import { I18nProvider } from "@{{projectName}}/ui";
+{{/if}}
+{{#if withThemes}}
+import { ThemeProvider } from "@{{projectName}}/ui";
+{{/if}}
+
+const el = document.getElementById("root");
+if (!el) throw new Error("缺少 #root");
+
+function withProviders(node: ReactNode): ReactNode {
+  let tree = node;
+  {{#if withThemes}}
+  tree = <ThemeProvider>{tree}</ThemeProvider>;
+  {{/if}}
+  {{#if withI18n}}
+  tree = <I18nProvider>{tree}</I18nProvider>;
+  {{/if}}
+  return tree;
+}
+
+createRoot(el).render(
+  <StrictMode>
+    {withProviders(<App />)}
+  </StrictMode>,
+);

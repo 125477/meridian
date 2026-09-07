@@ -1,0 +1,55 @@
+# {{projectName}} 协作约定
+
+生成工具：Meridian {{kitVersion}} / 蓝图 `{{blueprintId}}`。
+
+## 依赖方向（强制）
+
+```
+adapter → engine → ui
+apps/web 依赖 engine 与 ui，负责页面接线
+```
+
+- `packages/engine` 只放无头逻辑与状态，不 import React 组件
+- `packages/ui` 只放展示组件和 `AppShell`，不在此编写接 store 的整页 feature
+- 业务页面放在 `apps/web/src/pages/`
+
+## 质量门槛
+
+- `pnpm build` 必须通过后再提交功能
+- 新增模块先写 engine，再补 ui，最后在 pages 接线
+
+<!-- meridian:section:storybook -->
+## 组件画廊
+
+`apps/storybook` 用于独立预览 UI 组件，不在此接入真实业务 store。
+<!-- /meridian:section:storybook -->
+
+<!-- meridian:section:docs -->
+## 文档站
+
+`apps/docs` 仅承载文档内容，不实现业务功能。
+<!-- /meridian:section:docs -->
+
+<!-- meridian:section:i18n -->
+## 国际化
+
+文案不得硬编码到组件；通过词典或资源文件注入。
+<!-- /meridian:section:i18n -->
+
+<!-- meridian:section:themes -->
+## 主题
+
+颜色与间距走 CSS 变量 / Design Token，禁止在业务页写死色值。使用 `ThemeSwitcher` 切换预设。
+<!-- /meridian:section:themes -->
+
+<!-- meridian:section:optimize -->
+## 打包优化
+
+`apps/web` 开启了 manualChunks、Brotli 预压缩与 `dist/stats.html` 体积报告。
+<!-- /meridian:section:optimize -->
+
+<!-- meridian:section:desktop -->
+## 桌面壳
+
+`apps/electron` 是开发用桌面壳：先 `pnpm dev` 再 `pnpm dev:electron`。不含安装包与自动更新。
+<!-- /meridian:section:desktop -->

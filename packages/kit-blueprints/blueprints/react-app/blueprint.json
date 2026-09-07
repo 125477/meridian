@@ -1,0 +1,33 @@
+{
+  "id": "react-app",
+  "name": "SPA",
+  "version": "0.1.0",
+  "kitVersion": "^0.1.0",
+  "description": "轻量单页应用，适合管理后台与营销页。可选 React 或 Vue。",
+  "tags": ["spa", "react", "vue"],
+  "layers": ["apps"],
+  "defaultApps": ["web"],
+  "optionalApps": [],
+  "defaults": { "ui": "react", "packageManager": "pnpm" },
+  "prompts": [
+    {
+      "key": "ui",
+      "type": "select",
+      "message": "UI 框架",
+      "choices": [
+        { "value": "react", "label": "React" },
+        { "value": "vue", "label": "Vue 3" }
+      ]
+    }
+  ],
+  "features": {},
+  "templateDir": "template",
+  "pathRules": [
+    { "pattern": "apps/web/src/main.tsx.tmpl", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/web/src/main.ts.tmpl", "when": { "equals": ["ui", "vue"] } },
+    { "pattern": "apps/web/src/pages/HomePage.tsx*", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/web/src/pages/HomePage.vue*", "when": { "equals": ["ui", "vue"] } }
+  ],
+  "renameRules": [],
+  "license": "MIT"
+}

@@ -1,0 +1,38 @@
+<script setup lang="ts">
+import { h, onMounted, onUnmounted, ref, computed } from "vue";
+import { createAppModule } from "@{{projectName}}/engine";
+import { AppShell, StatusBanner{{#if withI18n}}, LocaleSwitcher{{/if}}{{#if withThemes}}, ThemeSwitcher{{/if}} } from "@{{projectName}}/ui";
+import HomePage from "./pages/HomePage.vue";
+
+const module = createAppModule();
+const snap = ref(module.store.getState());
+let stop: (() => void) | undefined;
+
+onMounted(() => {
+  stop = module.store.subscribe(() => {
+    snap.value = module.store.getState();
+  });
+  module.boot("{{projectName}}");
+});
+
+onUnmounted(() => stop?.());
+
+const actions = computed(() =>
+  h("span", { style: { display: "inline-flex", gap: "12px" } }, [
+    {{#if withI18n}}h(LocaleSwitcher),{{/if}}
+    {{#if withThemes}}h(ThemeSwitcher),{{/if}}
+  ]),
+);
+</script>
+
+<template>
+  <AppShell :title="snap.title" :actions="actions">
+    <template #default>
+      <HomePage :status="snap.status" :message="snap.message">
+        <StatusBanner :tone="snap.status === 'error' ? 'danger' : 'neutral'">
+          <span v-text="snap.message"></span>
+        </StatusBanner>
+      </HomePage>
+    </template>
+  </AppShell>
+</template>

@@ -1,0 +1,33 @@
+{
+  "id": "ui-library",
+  "name": "UI Library",
+  "version": "0.1.0",
+  "kitVersion": "^0.1.0",
+  "description": "可发布的 UI 组件库，附带组件画廊。可选 React 或 Vue。",
+  "tags": ["ui", "library", "react", "vue"],
+  "layers": ["ui", "apps"],
+  "defaultApps": ["storybook"],
+  "optionalApps": [],
+  "defaults": { "ui": "react", "withStorybook": true },
+  "prompts": [
+    {
+      "key": "ui",
+      "type": "select",
+      "message": "UI 框架",
+      "choices": [
+        { "value": "react", "label": "React" },
+        { "value": "vue", "label": "Vue 3" }
+      ]
+    }
+  ],
+  "features": { "storybook": { "apps": ["storybook"] } },
+  "templateDir": "template",
+  "pathRules": [
+    { "pattern": "packages/ui/src/Label.tsx", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "packages/ui/src/Label.ts", "when": { "equals": ["ui", "vue"] } },
+    { "pattern": "apps/storybook/src/main.tsx.tmpl", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/storybook/src/main.ts.tmpl", "when": { "equals": ["ui", "vue"] } }
+  ],
+  "renameRules": [],
+  "license": "MIT"
+}

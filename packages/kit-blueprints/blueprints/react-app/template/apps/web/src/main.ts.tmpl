@@ -1,0 +1,6 @@
+import { createApp, h } from "vue";
+import HomePage from "./pages/HomePage.vue";
+
+createApp({
+  render: () => h(HomePage, { title: "{{projectName}}" }),
+}).mount("#root");

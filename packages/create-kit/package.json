@@ -1,0 +1,15 @@
+{
+  "name": "@meridian/create-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "npm create @meridian/kit 入口垫片，转发至 @meridian/kit CLI",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-kit": "./index.js"
+  },
+  "files": ["index.js"],
+  "dependencies": {
+    "@meridian/kit": "workspace:*"
+  }
+}

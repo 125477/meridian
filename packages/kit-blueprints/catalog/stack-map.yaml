@@ -1,0 +1,134 @@
+# 用途：规则引擎的项目类型与信号表。可版本化、可单测，不依赖 LLM。
+version: 1
+
+kinds:
+  - id: complex-frontend
+    title: 复杂前端 / 企业工作区
+    keywords:
+      - 企业
+      - saas
+      - 分层
+      - monorepo
+      - 无头
+      - headless
+      - 多端
+      - 工作区
+    weight: 40
+    blueprint: headless-workspace
+    answers:
+      ui: react
+      withOptimize: true
+
+  - id: admin-console
+    title: 管理后台 / 单页应用
+    keywords:
+      - 管理后台
+      - dashboard
+      - 单页
+      - spa
+      - 后台
+    weight: 28
+    blueprint: react-app
+    answers:
+      ui: react
+
+  - id: design-system
+    title: 组件库 / 设计系统
+    keywords:
+      - 组件库
+      - 设计系统
+      - design system
+      - storybook
+    weight: 32
+    blueprint: ui-library
+    answers:
+      ui: react
+      withStorybook: true
+
+  - id: documentation-site
+    title: 文档站点
+    keywords:
+      - 文档站
+      - rspress
+      - 技术文档站
+      - docs site
+    weight: 36
+    blueprint: docs-portal
+    answers:
+      ui: react
+      withDocs: true
+
+  - id: mobile-web
+    title: 移动 H5
+    keywords:
+      - h5
+      - 移动端
+      - 手机端
+      - 微信
+    weight: 24
+    blueprint: headless-workspace
+    answers:
+      ui: react
+      platform: h5
+
+cues:
+  - id: needs-headless
+    keywords: [无头, headless, 逻辑分离, 分层]
+    weight: 10
+    apply:
+      withOptimize: true
+
+  - id: needs-storybook
+    keywords: [storybook, 组件预览]
+    weight: 10
+    apply:
+      withStorybook: true
+
+  - id: needs-docs
+    keywords: [文档站, rspress, 技术文档站]
+    weight: 12
+    apply:
+      withDocs: true
+
+  - id: needs-i18n
+    keywords: [国际化, i18n, 多语言, multilingual, 双语]
+    weight: 12
+    apply:
+      withI18n: true
+
+  - id: needs-themes
+    keywords: [多主题, 换肤, theme switcher]
+    weight: 8
+    apply:
+      withThemes: true
+
+  - id: needs-adapter
+    keywords: [adapter, 适配层, sdk 适配, 宿主适配]
+    weight: 8
+    apply:
+      withAdapter: true
+
+  - id: vue-stack
+    keywords: [vue, vue3]
+    weight: 6
+    apply:
+      ui: vue
+
+  - id: desktop-shell
+    keywords: [桌面端, 桌面应用, 桌面客户端]
+    weight: 14
+    apply:
+      platform: pc-desktop
+      withDesktop: true
+
+  - id: needs-optimize
+    keywords: [包体积, tree-shaking, 打包优化, bundle, brotli]
+    weight: 6
+    apply:
+      withOptimize: true
+
+constraints:
+  - when:
+      withDocs: true
+    require:
+      appsIncludes: docs

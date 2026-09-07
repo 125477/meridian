@@ -1,0 +1,14 @@
+import { createApp, h } from "vue";
+import { AppShell, StatusBanner } from "@{{projectName}}/ui";
+import "@{{projectName}}/ui/styles.css";
+
+createApp({
+  render: () =>
+    h(AppShell, { title: "组件画廊" }, {
+      default: () =>
+        h("div", { style: { display: "grid", gap: "16px" } }, [
+          h(StatusBanner, null, { default: () => "中性提示" }),
+          h(StatusBanner, { tone: "danger" }, { default: () => "错误提示" }),
+        ]),
+    }),
+}).mount("#root");

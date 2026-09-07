@@ -1,0 +1,40 @@
+export { MeridianError, MeridianErrorCode } from "./errors.js";
+export type { MeridianErrorCode as MeridianErrorCodeType } from "./errors.js";
+export {
+  LayerIdSchema,
+  UiFrameworkSchema,
+  PlatformSchema,
+  PackageManagerSchema,
+  FeatureIdSchema,
+  UiModuleIdSchema,
+  PathRuleSchema,
+  RenameRuleSchema,
+  PromptDefinitionSchema,
+  BlueprintManifestSchema,
+  CreateAnswersSchema,
+  ResolutionSchema,
+  PlannedFileSchema,
+  GenerationPlanSchema,
+  ProjectMetaSchema,
+  DoctorFindingSchema,
+  DoctorReportSchema,
+  RemoteCatalogSchema,
+} from "./models.js";
+export type {
+  LayerId,
+  UiFramework,
+  Platform,
+  PackageManager,
+  FeatureId,
+  UiModuleId,
+  BlueprintManifest,
+  CreateAnswers,
+  Resolution,
+  PlannedFile,
+  GenerationPlan,
+  ProjectMeta,
+  DoctorFinding,
+  DoctorReport,
+  RemoteCatalog,
+} from "./models.js";
+export { isValidProjectName, toPackageName, satisfiesCaretRange } from "./names.js";

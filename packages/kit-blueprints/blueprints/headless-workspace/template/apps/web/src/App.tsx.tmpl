@@ -1,0 +1,49 @@
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { createAppModule } from "@{{projectName}}/engine";
+import { AppShell, StatusBanner{{#if withI18n}}, LocaleSwitcher{{/if}}{{#if withThemes}}, ThemeSwitcher{{/if}} } from "@{{projectName}}/ui";
+import { HomePage } from "./pages/HomePage";
+
+export function App() {
+  const app = useMemo(() => createAppModule(), []);
+  const [snap, setSnap] = useState(app.store.getState());
+
+  useEffect(() => {
+    const stop = app.store.subscribe(() => setSnap(app.store.getState()));
+    app.boot("{{projectName}}");
+    return stop;
+  }, [app]);
+
+  const actions: ReactNode = (
+    <span style={{ display: "inline-flex", gap: 12, alignItems: "center" }}>
+      {{#if withI18n}}
+      <LocaleSwitcher />
+      {{/if}}
+      {{#if withThemes}}
+      <ThemeSwitcher />
+      {{/if}}
+    </span>
+  );
+
+  return (
+    <AppShell
+      title={snap.title}
+      actions={actions}
+      sidebar={
+        <nav>
+          <p style={{ margin: 0, color: "var(--muted)" }}>工作区</p>
+          <p style={{ fontWeight: 700 }}>首页</p>
+        </nav>
+      }
+    >
+      <HomePage
+        status={snap.status}
+        message={snap.message}
+        banner={
+          <StatusBanner tone={snap.status === "error" ? "danger" : "neutral"}>
+            {snap.message}
+          </StatusBanner>
+        }
+      />
+    </AppShell>
+  );
+}

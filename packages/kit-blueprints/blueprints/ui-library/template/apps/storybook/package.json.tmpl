@@ -1,0 +1,13 @@
+{
+  "name": "@{{projectName}}/storybook",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "{{#if isVue}}vue-tsc -p tsconfig.json --noEmit && vite build{{else}}vite build{{/if}}",
+    "lint": "{{#if isVue}}vue-tsc -p tsconfig.json --noEmit{{else}}tsc -p tsconfig.json --noEmit{{/if}}"
+  },
+  "dependencies": {{storybookDependencies}},
+  "devDependencies": {{storybookDevDependencies}}
+}

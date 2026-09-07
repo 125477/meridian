@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "{{#if isVue}}preserve{{else}}react-jsx{{/if}}"
+  },
+  "include": ["src"]
+}

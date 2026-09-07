@@ -1,0 +1,47 @@
+# {{projectName}}
+
+无头分层前端工作区。由 Meridian 生成，可在此基础上实现业务功能。
+
+## 分层
+
+- `packages/engine`：无头业务状态与用例，禁止依赖 UI
+- `packages/ui`：展示组件与应用壳，禁止写整页业务接线
+- `apps/web`：路由、Provider、页面拼接
+
+{{#if withAdapter}}
+- `packages/adapter`：第三方 SDK / HTTP 适配
+{{/if}}
+
+## 命令
+
+```bash
+pnpm install
+pnpm dev
+pnpm build
+```
+
+## 平台
+
+当前目标端：`{{platform}}`。UI 框架：`{{ui}}`。
+
+{{#if withI18n}}
+- 国际化已开启（zh-CN / en-US）
+{{/if}}
+{{#if withThemes}}
+- 多主题已开启
+{{/if}}
+{{#if withOptimize}}
+- 打包优化已开启（Brotli + stats.html）
+{{/if}}
+{{#if isDesktop}}
+- 桌面壳：先 `pnpm dev`，另开终端 `pnpm dev:electron`
+{{/if}}
+{{#if modules}}
+- UI 模块：见 `packages/ui` 依赖与 `enabledStackModules`
+{{/if}}
+
+{{#if answers.description}}
+## 需求摘要
+
+{{answers.description}}
+{{/if}}

@@ -1,0 +1,101 @@
+{
+  "id": "headless-workspace",
+  "name": "Headless Workspace",
+  "version": "0.1.0",
+  "kitVersion": "^0.1.0",
+  "description": "无头分层前端工作区：engine 承载业务状态，ui 提供展示与壳层，apps/web 负责页面接线。",
+  "tags": ["workspace", "headless", "enterprise", "react", "vue"],
+  "layers": ["engine", "ui"],
+  "defaultApps": ["web"],
+  "optionalApps": ["storybook", "docs", "electron"],
+  "defaults": {
+    "ui": "react",
+    "packageManager": "pnpm",
+    "withStorybook": false,
+    "withDocs": false,
+    "withAdapter": false,
+    "withOptimize": true
+  },
+  "prompts": [
+    {
+      "key": "ui",
+      "type": "select",
+      "message": "UI 框架",
+      "choices": [
+        { "value": "react", "label": "React" },
+        { "value": "vue", "label": "Vue 3" }
+      ]
+    },
+    {
+      "key": "withStorybook",
+      "type": "confirm",
+      "message": "是否加入组件画廊（Storybook）？",
+      "default": false
+    },
+    {
+      "key": "withDocs",
+      "type": "confirm",
+      "message": "是否加入文档站点？",
+      "default": false
+    },
+    {
+      "key": "withAdapter",
+      "type": "confirm",
+      "message": "是否加入 adapter 适配层？",
+      "default": false
+    },
+    {
+      "key": "withI18n",
+      "type": "confirm",
+      "message": "是否开启国际化？",
+      "default": false
+    },
+    {
+      "key": "withThemes",
+      "type": "confirm",
+      "message": "是否开启多主题？",
+      "default": false
+    },
+    {
+      "key": "withOptimize",
+      "type": "confirm",
+      "message": "是否开启打包体积优化（split / Brotli / stats.html）？",
+      "default": true
+    }
+  ],
+  "features": {
+    "storybook": { "apps": ["storybook"], "requires": ["ui"] },
+    "docs": { "apps": ["docs"] },
+    "adapter": { "layers": ["adapter"] },
+    "i18n": {},
+    "themes": {},
+    "optimize": {},
+    "desktop": { "apps": ["electron"] }
+  },
+  "templateDir": "template",
+  "pathRules": [
+    { "pattern": "packages/ui-react/**", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "packages/ui-vue/**", "when": { "equals": ["ui", "vue"] } },
+    { "pattern": "packages/ui-react/src/i18n/**", "when": { "equals": ["withI18n", true] } },
+    { "pattern": "packages/ui-vue/src/i18n/**", "when": { "equals": ["withI18n", true] } },
+    { "pattern": "packages/ui-react/src/theme/**", "when": { "equals": ["withThemes", true] } },
+    { "pattern": "packages/ui-vue/src/theme/**", "when": { "equals": ["withThemes", true] } },
+    { "pattern": "apps/storybook/**", "when": { "equals": ["withStorybook", true] } },
+    { "pattern": "apps/storybook/src/main.tsx.tmpl", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/storybook/src/main.ts.tmpl", "when": { "equals": ["ui", "vue"] } },
+    { "pattern": "apps/docs/**", "when": { "equals": ["withDocs", true] } },
+    { "pattern": "packages/adapter/**", "when": { "equals": ["withAdapter", true] } },
+    { "pattern": "apps/electron/**", "when": { "equals": ["withDesktop", true] } },
+    { "pattern": "apps/web/src/main.tsx.tmpl", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/web/src/App.tsx*", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/web/src/pages/HomePage.tsx*", "when": { "equals": ["ui", "react"] } },
+    { "pattern": "apps/web/src/main.ts.tmpl", "when": { "equals": ["ui", "vue"] } },
+    { "pattern": "apps/web/src/App.vue*", "when": { "equals": ["ui", "vue"] } },
+    { "pattern": "apps/web/src/pages/HomePage.vue*", "when": { "equals": ["ui", "vue"] } }
+  ],
+  "renameRules": [
+    { "from": "packages/ui-react", "to": "packages/ui", "when": { "equals": ["ui", "react"] } },
+    { "from": "packages/ui-vue", "to": "packages/ui", "when": { "equals": ["ui", "vue"] } }
+  ],
+  "license": "MIT"
+}

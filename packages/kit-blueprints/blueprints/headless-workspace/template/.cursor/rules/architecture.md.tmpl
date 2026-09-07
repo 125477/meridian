@@ -1,0 +1,16 @@
+---
+description: {{projectName}} 分层与编码约定
+alwaysApply: true
+---
+
+# 架构
+
+项目：{{projectName}}
+
+依赖只允许：adapter → engine → ui；页面接线只在 apps/web/src/pages。
+
+禁止：
+
+- 在 packages/ui 编写整页并直接订阅 engine store
+- 在 packages/engine 引用 React / CSS
+- 为了赶进度把业务逻辑写进页面组件且无法单测

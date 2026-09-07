@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "product": "meridian",
+  "blueprints": [
+    {
+      "id": "headless-workspace",
+      "status": "stable",
+      "use": "企业复杂前端、无头分层、多端 Web",
+      "stack": "TypeScript + Vite + pnpm workspaces；engine / ui / apps；React 或 Vue"
+    },
+    {
+      "id": "react-app",
+      "status": "stable",
+      "use": "管理后台、轻量单页",
+      "stack": "Vite + React 或 Vue + TypeScript"
+    },
+    {
+      "id": "ui-library",
+      "status": "stable",
+      "use": "设计系统、可复用组件",
+      "stack": "packages/ui + 组件画廊；React 或 Vue"
+    },
+    {
+      "id": "docs-portal",
+      "status": "stable",
+      "use": "产品/技术文档站",
+      "stack": "Vite 文档门户（Markdown 侧栏 + 多页）"
+    }
+  ],
+  "ui": [
+    { "id": "react", "status": "stable" },
+    { "id": "vue", "status": "stable", "note": "Vue 3 + Vite；无头工作区 / 单页 / 组件库均支持" }
+  ],
+  "platforms": [
+    { "id": "pc-web", "status": "stable" },
+    { "id": "h5", "status": "stable" },
+    { "id": "pc-desktop", "status": "experimental", "note": "仅当描述明确要求桌面客户端时开启；生成 Electron 开发壳，不含安装包/自动更新" }
+  ],
+  "features": ["storybook", "docs", "adapter", "i18n", "themes", "optimize", "desktop"],
+  "modules": [
+    "rich-text",
+    "emoji",
+    "file-preview",
+    "markdown",
+    "virtual-list",
+    "command-palette",
+    "hooks",
+    "screenshot",
+    "pinyin"
+  ],
+  "notGenerated": [
+    "后端运行时与数据库",
+    "消息队列 / K8s / CI 细节",
+    "第三方 SaaS 集成代码",
+    "LLM / Agent 运行时",
+    "React Native / Flutter",
+    "完整桌面安装包与自动更新"
+  ],
+  "mergeRules": {
+    "withDocs": "false-wins",
+    "withI18n": "false-wins",
+    "withThemes": "false-wins",
+    "platform": "user > matrix > llm"
+  }
+}

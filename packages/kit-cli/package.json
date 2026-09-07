@@ -1,0 +1,29 @@
+{
+  "name": "@meridian/kit",
+  "version": "0.1.0",
+  "description": "Meridian CLI — 从描述生成可维护的前端工作区",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "meridian": "./dist/index.js",
+    "create-meridian": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "@meridian/engine": "workspace:*",
+    "@meridian/schema": "workspace:*",
+    "commander": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

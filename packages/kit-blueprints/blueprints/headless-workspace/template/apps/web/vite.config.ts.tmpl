@@ -1,0 +1,37 @@
+import { defineConfig } from "vite";
+{{#if isVue}}
+import vue from "@vitejs/plugin-vue";
+{{else}}
+import react from "@vitejs/plugin-react";
+{{/if}}
+{{#if withOptimize}}
+import compression from "vite-plugin-compression";
+import { visualizer } from "rollup-plugin-visualizer";
+{{/if}}
+
+export default defineConfig({
+  plugins: [
+    {{#if isVue}}vue(){{else}}react(){{/if}},
+    {{#if withOptimize}}
+    compression({ algorithm: "brotliCompress" }),
+    visualizer({ filename: "dist/stats.html", gzipSize: true, brotliSize: true }),
+    {{/if}}
+  ],
+  {{#if withOptimize}}
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("i18next") || id.includes("vue-i18n")) return "i18n";
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
+  {{/if}}
+  server: {
+    port: 5173,
+  },
+});

@@ -1,0 +1,28 @@
+{
+  "name": "meridian",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Meridian — 从需求描述到可维护前端工作区的独立脚手架工具",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter @meridian/schema --filter @meridian/blueprints --filter @meridian/engine --filter @meridian/kit --filter @meridian/agent run build",
+    "dev": "pnpm -r --parallel run dev",
+    "lint": "pnpm -r run lint",
+    "test": "vitest run",
+    "meridian": "node packages/kit-cli/dist/index.js",
+    "setup-agent": "node packages/kit-cli/dist/index.js setup-agent"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

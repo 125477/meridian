@@ -1,0 +1,15 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { AppShell, StatusBanner } from "@{{projectName}}/ui";
+import "@{{projectName}}/ui/styles.css";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <AppShell title="组件画廊">
+      <div style={{ display: "grid", gap: 16 }}>
+        <StatusBanner>中性提示</StatusBanner>
+        <StatusBanner tone="danger">错误提示</StatusBanner>
+      </div>
+    </AppShell>
+  </StrictMode>,
+);

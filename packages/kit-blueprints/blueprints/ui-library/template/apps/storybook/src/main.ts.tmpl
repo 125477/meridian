@@ -1,0 +1,6 @@
+import { createApp, h } from "vue";
+import { Label } from "@{{projectName}}/ui";
+
+createApp({
+  render: () => h(Label, null, { default: () => "{{projectName}} gallery" }),
+}).mount("#root");

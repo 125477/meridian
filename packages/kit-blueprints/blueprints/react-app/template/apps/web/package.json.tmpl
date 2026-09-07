@@ -1,0 +1,31 @@
+{
+  "name": "@{{projectName}}/web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "{{#if isVue}}vue-tsc -p tsconfig.json --noEmit && vite build{{else}}tsc -p tsconfig.json --noEmit && vite build{{/if}}",
+    "lint": "{{#if isVue}}vue-tsc -p tsconfig.json --noEmit{{else}}tsc -p tsconfig.json --noEmit{{/if}}"
+  },
+  "dependencies": {
+    {{#if isVue}}
+    "vue": "^3.5.13"
+    {{else}}
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+    {{/if}}
+  },
+  "devDependencies": {
+    {{#if isVue}}
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vue-tsc": "^2.2.0",
+    {{else}}
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    {{/if}}
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6"
+  }
+}

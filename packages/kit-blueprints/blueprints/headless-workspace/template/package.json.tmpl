@@ -1,0 +1,20 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "0.1.0",
+  "description": "{{answers.description}}",
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.4",
+  "scripts": {
+    "dev": "pnpm --filter @{{projectName}}/web dev",
+    {{#if isDesktop}}
+    "dev:electron": "pnpm --filter @{{projectName}}/electron dev",
+    {{/if}}
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r run test"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [{{#if isDesktop}}"electron", {{/if}}"esbuild"]
+  }
+}

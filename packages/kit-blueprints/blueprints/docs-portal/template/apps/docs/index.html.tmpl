@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{projectName}}</title>
+    <style>
+      body { font-family: sans-serif; margin: 0; color: #1c1915; background: #f7f4ee; }
+      header { padding: 20px 32px; border-bottom: 1px solid #e4d9c8; background: #fffdf8; }
+      main { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 72px); }
+      aside { padding: 24px; border-right: 1px solid #e4d9c8; }
+      article { padding: 32px 48px; max-width: 760px; line-height: 1.7; }
+      button { margin: 0 8px 8px 0; }
+    </style>
+  </head>
+  <body>
+    <header><strong>{{projectName}}</strong> 文档门户</header>
+    <main>
+      <aside id="nav"></aside>
+      <article id="doc"></article>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

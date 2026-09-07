@@ -1,0 +1,11 @@
+{
+  "name": "@meridian/agent",
+  "version": "0.1.0",
+  "description": "Meridian 自包含 Agent Skill：scripts + 蓝图 + 提示词",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node -e \"console.log('kit-agent 无需编译，脚本为 ESM')\"",
+    "lint": "node -e \"process.exit(0)\""
+  }
+}

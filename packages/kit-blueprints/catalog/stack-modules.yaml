@@ -1,0 +1,78 @@
+version: 1
+
+# 可选 UI 模块。描述命中 keywords 时注入 dependencies。
+# frameworks 缺省表示 React / Vue 均可。
+# dependencies 为两端共用；reactDependencies / vueDependencies 按 UI 叠加。
+
+modules:
+  rich-text:
+    label: 富文本编辑器
+    keywords: [富文本, 编辑器, lexical, editor, richtext, 所见即所得, tiptap]
+    reactDependencies:
+      "@lexical/react": "^0.31.0"
+      "@lexical/selection": "^0.31.0"
+      lexical: "^0.31.0"
+    vueDependencies:
+      "@tiptap/pm": "^2.11.7"
+      "@tiptap/starter-kit": "^2.11.7"
+      "@tiptap/vue-3": "^2.11.7"
+
+  emoji:
+    label: Emoji 选择器
+    keywords: [表情, emoji, emoji-mart, 表情包]
+    reactDependencies:
+      "@emoji-mart/data": "^1.2.1"
+      "@emoji-mart/react": "^1.1.1"
+    vueDependencies:
+      emoji-picker-element: "^1.26.3"
+
+  file-preview:
+    label: 办公文件预览
+    keywords: [docx, pdf, excel, ppt, 文档预览, word, 表格预览, office 预览, 文件预览]
+    dependencies:
+      "@js-preview/docx": "^1.6.4"
+      "@js-preview/excel": "^1.7.14"
+      "@js-preview/pdf": "^2.0.10"
+      pptx-preview: "^1.0.7"
+
+  markdown:
+    label: Markdown 渲染
+    keywords: [markdown, md, marked, 渲染 markdown]
+    dependencies:
+      marked: "^18.0.4"
+
+  screenshot:
+    label: 截图 / Canvas 导出
+    keywords: [截图, html2canvas, canvas, 导出图片]
+    dependencies:
+      html2canvas: "^1.4.1"
+
+  pinyin:
+    label: 拼音转换
+    keywords: [拼音, pinyin, 中文排序]
+    dependencies:
+      pinyin-pro: "^3.28.1"
+
+  virtual-list:
+    label: 虚拟滚动列表
+    keywords: [虚拟列表, virtual list, virtuoso, 长列表, 大数据列表, 无限滚动]
+    reactDependencies:
+      react-virtuoso: "^4.18.5"
+    vueDependencies:
+      "@tanstack/vue-virtual": "^3.13.6"
+
+  command-palette:
+    label: 命令面板
+    keywords: [命令面板, command palette, cmdk, 快捷搜索, 全局搜索]
+    reactDependencies:
+      cmdk: "^1.1.1"
+    vueDependencies:
+      tinykeys: "^3.0.0"
+
+  hooks:
+    label: 组合式工具库
+    keywords: [ahooks, react hooks, 请求封装, useRequest, vueuse]
+    reactDependencies:
+      ahooks: "^3.8.1"
+    vueDependencies:
+      "@vueuse/core": "^13.5.0"

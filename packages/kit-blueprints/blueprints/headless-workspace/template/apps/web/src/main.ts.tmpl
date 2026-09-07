@@ -1,0 +1,18 @@
+import { createApp } from "vue";
+import App from "./App.vue";
+import "@{{projectName}}/ui/styles.css";
+{{#if withI18n}}
+import { i18n } from "@{{projectName}}/ui";
+{{/if}}
+{{#if withThemes}}
+import { applyTheme } from "@{{projectName}}/ui";
+{{/if}}
+
+const app = createApp(App);
+{{#if withI18n}}
+app.use(i18n);
+{{/if}}
+{{#if withThemes}}
+applyTheme("sand");
+{{/if}}
+app.mount("#app");
